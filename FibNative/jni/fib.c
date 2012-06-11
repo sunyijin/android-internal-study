@@ -7,6 +7,6 @@ jlong fib(jlong n) {
 }
 
 JNIEXPORT jlong JNICALL Java_com_intel_fibnative_FibLib_fibN
-  (JNIEnv * env, jobject object, jlong n) {
+  (JNIEnv * env, jclass object, jlong n) {
 	return fib(n);
 }
