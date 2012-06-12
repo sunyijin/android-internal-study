@@ -1,4 +1,4 @@
-package com.intel.lognative;
+package com.intel.logclient;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 public class LogActivity extends Activity {
 	EditText tag, message;
 	RadioGroup priority;
+	LogManager logManager;
 	
     /** Called when the activity is first created. */
     @Override
@@ -19,6 +20,8 @@ public class LogActivity extends Activity {
         tag = (EditText) findViewById(R.id.tag);
         message = (EditText) findViewById(R.id.message);
         priority = (RadioGroup) findViewById(R.id.priority);
+        
+        logManager = new LogManager(this);
     }
     
     /** Called when button Log! is clicked. */
@@ -29,13 +32,13 @@ public class LogActivity extends Activity {
     		
     		switch( priority.getCheckedRadioButtonId() ) {
     		case R.id.radio_debug:
-    			priorityInt = LogLib.DEBUG; break;
+    			priorityInt = LogManager.DEBUG; break;
     		case R.id.radio_warn:
-    			priorityInt = LogLib.WARN; break;
+    			priorityInt = LogManager.WARN; break;
     		case R.id.radio_error:
-    			priorityInt = LogLib.ERROR; break;
+    			priorityInt = LogManager.ERROR; break;
     		}
     		
-    		LogLib.log(priorityInt, tagString, messageString);
+    		logManager.log(priorityInt, tagString, messageString);
     }
 }
